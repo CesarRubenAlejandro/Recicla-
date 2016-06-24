@@ -44,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // borrar alguna sesion existente
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                currentUser.logOut();
+
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
                 // logear al usuario

@@ -15,6 +15,7 @@ import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 import itesm.mx.reciclamas.R;
+import itesm.mx.reciclamas.Values.Database;
 import itesm.mx.reciclamas.Values.Keys;
 
 public class RegistroActivity extends AppCompatActivity {
@@ -35,18 +36,21 @@ public class RegistroActivity extends AppCompatActivity {
         registroButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // borrar alguna sesion existente
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                currentUser.logOut();
+
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
                 String correo = correoEditText.getText().toString();
-                ParseUser user = new ParseUser();
+                final ParseUser user = new ParseUser();
                 user.setUsername(username);
                 user.setPassword(password);
                 user.setEmail(correo);
-
+                user.put(Database.User.CANTIDAD, 0);
                 user.signUpInBackground(new SignUpCallback() {
                     public void done(ParseException e) {
                         if (e == null) {
-                            // Hooray! Let them use the app now.
                             Toast.makeText(getApplicationContext(), "Registro exitoso", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(RegistroActivity.this, InicioActivity.class);
                             startActivityForResult(intent, Keys.REQUEST_CODE_INICIO_ACTIVITY);
