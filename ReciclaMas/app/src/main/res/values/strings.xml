@@ -16,5 +16,6 @@
         <item>Papel</item>
     </string-array>
     <string name="title_activity_lideres">LideresActivity</string>
+    <string name="admin_mail">cesar.ruben.alex@gmail.com</string>
 
 </resources>
