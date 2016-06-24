@@ -41,10 +41,9 @@ public class LideresListViewAdapter extends ArrayAdapter<ParseUser> {
             row = inflater.inflate(layoutResourceId, parent, false);
         }
         TextView posUsuarioTextView = (TextView) row.findViewById(R.id.pos_usuarioTV);
-        Button denunciarButton = (Button) row.findViewById(R.id.denunciarBttn);
 
-        posUsuarioTextView.setText((position + 1) + ".- " + this.listaUsers.get(position).getUsername()
-                + "| kg: " + new DecimalFormat("#.##").format(this.listaUsers.get(position).get(Database.User.CANTIDAD)));
+        posUsuarioTextView.setText((position + 1) + "   |   " + this.listaUsers.get(position).getUsername()
+                + "   | kg reciclados: " + new DecimalFormat("#.##").format(this.listaUsers.get(position).get(Database.User.CANTIDAD)));
         return row;
     }
 }

@@ -1,6 +1,7 @@
 package itesm.mx.reciclamas.Activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -25,6 +27,7 @@ public class LideresActivity extends AppCompatActivity {
     private TextView userTextView;
     private Button volverButton;
     private ListView lideresListView;
+    private Button denunciarButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class LideresActivity extends AppCompatActivity {
         userTextView = (TextView) findViewById(R.id.bienvenidoTV);
         volverButton = (Button) findViewById(R.id.volverBttn);
         lideresListView = (ListView) findViewById(R.id.lideresLV);
+        denunciarButton = (Button) findViewById(R.id.denunciarBttn);
 
         // agregar el nombre del usuario al header
         userTextView.setText("Bienvenido, " + ParseUser.getCurrentUser().getUsername());
@@ -48,6 +52,13 @@ public class LideresActivity extends AppCompatActivity {
         });
         final LideresListViewAdapter miAdaptador = new LideresListViewAdapter(getApplicationContext(),R.layout.row,getOrderedUserList());
         lideresListView.setAdapter(miAdaptador);
+
+        denunciarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                enviaEmail();
+            }
+        });
     }
 
     @Override
@@ -70,6 +81,26 @@ public class LideresActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void enviaEmail(){
+        String [] T0 = {"cesar.ruben.alex@gmail.com"};
+        String [] CC = {"nobody@mail.com"};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, T0);
+        emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Denuncia de usuario sospechoso");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "El usuario NOMBRE_USUARIO me parece sospechoso de una actitud deshonesta porque RAZON");
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+        } catch (android.content.ActivityNotFoundException ex){
+            Toast.makeText(LideresActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public List<ParseUser> getOrderedUserList(){

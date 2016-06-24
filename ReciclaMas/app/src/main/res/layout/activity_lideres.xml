@@ -46,7 +46,8 @@
         android:text="\u00A9 Recicla+ 2016"
         android:textSize="20dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView4" />
 
     <Button
         android:layout_width="wrap_content"
@@ -54,6 +55,15 @@
         android:text="volver"
         android:id="@+id/volverBttn"
         android:layout_below="@+id/textView10"
-        android:layout_centerHorizontal="true" />
+        android:layout_toStartOf="@+id/textView4" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Denunciar usuario"
+        android:id="@+id/denunciarBttn"
+        android:layout_below="@+id/textView10"
+        android:layout_alignEnd="@+id/lideresLV" />
 
 </RelativeLayout>

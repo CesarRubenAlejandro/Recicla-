@@ -11,10 +11,4 @@
         android:id="@+id/pos_usuarioTV"
         android:textColor="#010101" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="denunciar"
-        android:id="@+id/denunciarBttn" />
 </LinearLayout>
