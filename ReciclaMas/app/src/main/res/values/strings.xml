@@ -3,4 +3,18 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="registrate_tv"><u>Registrate</u></string>
+    <string name="title_activity_inicio">InicioActivity</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_registro">RegistroActivity</string>
+    <string name="title_activity_nuevo">NuevoActivity</string>
+    <string-array name="materiales_array">
+        <item>Plastico</item>
+        <item>Aluminio</item>
+        <item>Papel</item>
+    </string-array>
+    <string name="title_activity_lideres">LideresActivity</string>
+
 </resources>
